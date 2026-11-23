@@ -1,5 +1,5 @@
 /* MDG Register — offline shell. Bump CACHE when shipping changes. */
-const CACHE = 'mdg-register-v1';
+const CACHE = 'mdg-register-v2';
 const ASSETS = ['./', 'index.html', 'styles.css', 'app.js', 'data.js', 'icon.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
