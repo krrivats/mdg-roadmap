@@ -99,12 +99,19 @@
     </div>
 
     <div class="chiprow" id="phase-chips" role="tablist" aria-label="Phases"></div>
-    <div class="chiprow chiprow-sub" id="level-chips" role="group" aria-label="Filters">
-      <button class="chip is-on" data-level="all" type="button">All</button>
-      <button class="chip" data-level="beginner" type="button">Beginner</button>
-      <button class="chip" data-level="intermediate" type="button">Intermediate</button>
-      <button class="chip" data-level="advanced" type="button">Advanced</button>
-      <button class="chip chip-toggle" data-toggle="unwatched" type="button" aria-pressed="false">Unwatched</button>
+    <div class="filters-block" id="filters-block">
+      <button class="filter-toggle" id="btn-filters" type="button" aria-expanded="false" aria-controls="level-chips">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        <span id="filter-label">Filters</span>
+        <b class="filter-count" id="filter-count" hidden>0</b>
+      </button>
+      <div class="chiprow chiprow-sub" id="level-chips" role="group" aria-label="Filters">
+        <button class="chip is-on" data-level="all" type="button">All</button>
+        <button class="chip" data-level="beginner" type="button">Beginner</button>
+        <button class="chip" data-level="intermediate" type="button">Intermediate</button>
+        <button class="chip" data-level="advanced" type="button">Advanced</button>
+        <button class="chip chip-toggle" data-toggle="unwatched" type="button" aria-pressed="false">Unwatched</button>
+      </div>
     </div>
 
     <p class="result-line" id="result-line"></p>

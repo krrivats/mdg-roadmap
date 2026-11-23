@@ -68,7 +68,7 @@ with sync_playwright() as p:
     R["phase3_cards"] = pg.evaluate("document.querySelectorAll('#learn-body .vcard').length")
 
     # level filter
-    pg.click(".chip[data-level='advanced']")
+    pg.click("#btn-filters"); pg.wait_for_timeout(250); pg.click(".chip[data-level='advanced']")
     pg.wait_for_timeout(300)
     R["advanced_hits"] = pg.evaluate("document.querySelectorAll('#learn-body .vcard').length")
     R["advanced_only"] = pg.evaluate("[...document.querySelectorAll('#learn-body .vcard .pill.lvl')].every(e=>e.textContent.trim()==='advanced')")

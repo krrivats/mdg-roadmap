@@ -136,10 +136,12 @@
     }).join('');
   }
 
+  var SHORT = { '0': 'Intro', '1': 'Data', '2': 'UI', '3': 'Process', '4': 'Rules', '5': 'Search' };
+
   function buildChips() {
     $('#phase-chips').innerHTML = D.phases.map(function (p) {
       return '<button class="chip' + (S.phase === p.id ? ' is-on' : '') + '" data-phase="' + p.id + '" type="button" role="tab" aria-selected="' + (S.phase === p.id) + '">' +
-        'P' + p.id + '<span class="c-n">' + p.videos.length + '</span></button>';
+        (SHORT[p.id] || ('P' + p.id)) + '<span class="c-n">' + p.videos.length + '</span></button>';
     }).join('');
   }
 
@@ -194,6 +196,16 @@
     buildChips();
     markScrollable();
     updateProgress();
+  }
+
+  function updateFilterBadge() {
+    var active = (S.level !== 'all' ? 1 : 0) + (S.unwatched ? 1 : 0);
+    var badge = $('#filter-count');
+    if (!badge) return;
+    badge.hidden = active === 0;
+    badge.textContent = String(active);
+    $('#filter-label').textContent = active === 0 ? 'Filters'
+      : (S.level !== 'all' ? cap(S.level) : 'Unwatched');
   }
 
   function markScrollable() {
@@ -365,6 +377,13 @@
       var meta = e.target.closest('.vmeta');
       if (meta && !e.target.closest('a')) { openCard(meta.closest('.vcard').dataset.id); return; }
 
+      if (e.target.closest('#btn-filters')) {
+        var block = $('#filters-block');
+        var open = block.classList.toggle('is-open');
+        $('#btn-filters').setAttribute('aria-expanded', String(open));
+        return;
+      }
+
       var chip = e.target.closest('.chip');
       if (chip) {
         if (chip.dataset.phase !== undefined) {
@@ -377,12 +396,14 @@
         if (chip.dataset.level !== undefined) {
           S.level = chip.dataset.level;
           $$('.chip[data-level]').forEach(function (c) { c.classList.toggle('is-on', c === chip); });
+          updateFilterBadge();
           renderLearn(); return;
         }
         if (chip.dataset.toggle === 'unwatched') {
           S.unwatched = !S.unwatched;
           chip.classList.toggle('is-on', S.unwatched);
           chip.setAttribute('aria-pressed', String(S.unwatched));
+          updateFilterBadge();
           renderLearn(); return;
         }
       }
@@ -486,6 +507,7 @@
     buildPlan();
     renderLearn();
     wire();
+    updateFilterBadge();
     markScrollable();
     window.addEventListener('resize', markScrollable);
     updateProgress();
