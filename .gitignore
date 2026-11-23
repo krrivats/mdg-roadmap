@@ -1,0 +1,9 @@
+data/subs/
+data/txt/
+shots/
+__pycache__/
+*.pyc
+data/err_*.txt
+data/dl_err.txt
+data/mdg_ids.txt
+data/playlist_order.txt

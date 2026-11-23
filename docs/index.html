@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAP MDG · Study Register</title>
+<meta name="description" content="All 54 SAP MDG videos from Koushik Konda's channel, ordered by dependency: data model, UI, process, rules. Track what you have watched.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231c5d43'/><text x='50' y='68' font-size='52' font-family='Georgia' text-anchor='middle' fill='%23f7f4ed'>M</text></svg>">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#content">
+      <span class="brand-mark">MDG</span>
+      <span class="brand-text">Study Register</span>
+    </a>
+
+    <div class="meter" role="group" aria-label="Overall progress">
+      <div class="meter-head">
+        <strong id="pct">0%</strong>
+        <span id="count">0 of 54 watched</span>
+        <span class="meter-time" id="time-left">25h 14m left</span>
+      </div>
+      <div class="meter-bars" id="meter-bars" aria-hidden="true"></div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" id="btn-continue" type="button">Continue</button>
+      <button class="btn btn-ghost" id="btn-print" type="button" title="Print checklist">Print</button>
+      <button class="btn btn-ghost" id="btn-theme" type="button" title="Switch theme">Dark</button>
+      <button class="btn btn-ghost" id="btn-reset" type="button" title="Clear all progress">Reset</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-block">
+      <p class="eyebrow">The channel</p>
+      <p class="rail-fact"><a href="https://www.youtube.com/@koushikkonda1994" target="_blank" rel="noopener">Koushik Konda</a> has 123 videos. <strong>54</strong> are SAP MDG. The playlist runs newest-first, so nothing is in teaching order.</p>
+    </div>
+
+    <nav class="rail-nav" aria-label="Phases">
+      <p class="eyebrow">Phases</p>
+      <ol id="rail-list"></ol>
+    </nav>
+
+    <div class="rail-block rail-links">
+      <p class="eyebrow">More</p>
+      <a href="#schedule">Study schedules</a>
+      <a href="#gaps">What this channel skips</a>
+      <a href="#caveats">Caveats</a>
+      <a href="#notes">Night notes</a>
+    </div>
+  </aside>
+
+  <main id="content">
+    <section class="hero">
+      <p class="eyebrow">SAP Master Data Governance · ordered curriculum</p>
+      <h1>SAP MDG, in the<br>only order that works.</h1>
+      <p class="lede">Every MDG video on this channel, sorted by SAP's own dependency chain — data model first, then UI, then process, then rules. Each one carries the key points pulled from its actual transcript, and a checkpoint you must pass before moving on.</p>
+      <dl class="stats">
+        <div><dt>Videos</dt><dd>54</dd></div>
+        <div><dt>Watch time</dt><dd>25h 14m</dd></div>
+        <div><dt>Phases</dt><dd>6</dd></div>
+        <div><dt>Wrong order</dt><dd>0</dd></div>
+      </dl>
+    </section>
+
+    <section class="tonight" id="tonight">
+      <div class="tonight-head">
+        <h2>Start tonight</h2>
+        <p>41 minutes. Four short videos that make everything else readable.</p>
+      </div>
+      <div id="tonight-list" class="tonight-list"></div>
+    </section>
+
+    <div class="toolbar" id="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search a video, an object, a table…  (press /)" autocomplete="off" aria-label="Search videos">
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by level">
+        <button class="chip is-on" data-level="all" type="button">All</button>
+        <button class="chip" data-level="beginner" type="button">Beginner</button>
+        <button class="chip" data-level="intermediate" type="button">Intermediate</button>
+        <button class="chip" data-level="advanced" type="button">Advanced</button>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="unwatched">
+        <span>Unwatched only</span>
+      </label>
+      <p class="toolbar-count" id="result-count"></p>
+    </div>
+
+    <div id="phases"></div>
+
+    <section class="pane" id="schedule">
+      <p class="eyebrow">Plan</p>
+      <h2>Three schedules, one order</h2>
+      <p class="pane-lede">The sequence never changes — only the pace. Pick the pace you will actually keep, not the one that sounds impressive.</p>
+      <div class="tabs" id="schedule-tabs" role="tablist"></div>
+      <div id="schedule-body" class="schedule-body"></div>
+    </section>
+
+    <section class="pane" id="gaps">
+      <p class="eyebrow">Blind spots</p>
+      <h2>What this channel does not teach</h2>
+      <p class="pane-lede">Strong on extension, UI, workflow, BRF+/BAdI. Silent on the things that decide whether a project actually ships. Cover these elsewhere.</p>
+      <div class="gap-list" id="gap-list"></div>
+    </section>
+
+    <section class="pane" id="caveats">
+      <p class="eyebrow">Read before quoting</p>
+      <h2>Caveats in these notes</h2>
+      <ul class="caveats" id="caveat-list"></ul>
+      <div class="toplist">
+        <p class="eyebrow">Most watched on the channel</p>
+        <ol id="top-list"></ol>
+      </div>
+    </section>
+
+    <section class="pane" id="notes">
+      <p class="eyebrow">Your log</p>
+      <h2>Night notes</h2>
+      <p class="pane-lede">After each sitting, write three lines in your own words. Saved in this browser only.</p>
+      <textarea id="journal" rows="6" placeholder="Phase 1, video 3 — what I configured, what broke, what I would say in an interview…"></textarea>
+      <div class="notes-foot">
+        <span id="journal-status">Saved locally</span>
+        <button class="btn btn-ghost" id="btn-export" type="button">Export progress (.json)</button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p>Built from the transcripts of all 54 videos, not from their titles. Object names come from auto-captions — verify the flagged ones in SE37 / SE24 before you quote them.</p>
+      <p class="foot-meta">Static site · no tracking · progress stays in your browser</p>
+    </footer>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
