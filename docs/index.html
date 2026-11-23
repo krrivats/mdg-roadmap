@@ -1,148 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SAP MDG · Study Register</title>
-<meta name="description" content="All 54 SAP MDG videos from Koushik Konda's channel, ordered by dependency: data model, UI, process, rules. Track what you have watched.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MDG Register</title>
+<meta name="description" content="54 SAP MDG videos ordered by dependency, with notes and progress tracking. A 25-hour curriculum in one app.">
+<meta name="theme-color" content="#0a0c0f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MDG">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231c5d43'/><text x='50' y='68' font-size='52' font-family='Georgia' text-anchor='middle' fill='%23f7f4ed'>M</text></svg>">
 </head>
 <body>
-<a class="skip" href="#content">Skip to content</a>
+<a class="skip" href="#screen">Skip to content</a>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#content">
-      <span class="brand-mark">MDG</span>
-      <span class="brand-text">Study Register</span>
-    </a>
+<header class="appbar">
+  <div class="brand">
+    <span class="mark" aria-hidden="true">M</span>
+    <span class="brand-txt">MDG<em>register</em></span>
+  </div>
 
-    <div class="meter" role="group" aria-label="Overall progress">
-      <div class="meter-head">
-        <strong id="pct">0%</strong>
-        <span id="count">0 of 54 watched</span>
-        <span class="meter-time" id="time-left">25h 14m left</span>
-      </div>
-      <div class="meter-bars" id="meter-bars" aria-hidden="true"></div>
-    </div>
+  <button class="ring-btn" id="btn-progress" type="button" aria-label="Overall progress">
+    <svg class="ring" viewBox="0 0 64 64" aria-hidden="true">
+      <circle class="ring-bg" cx="32" cy="32" r="26"></circle>
+      <circle class="ring-fg" id="ring-fg" cx="32" cy="32" r="26"></circle>
+    </svg>
+    <span class="ring-pct" id="ring-pct">0%</span>
+  </button>
 
-    <div class="topbar-actions">
-      <button class="btn btn-ghost" id="btn-continue" type="button">Continue</button>
-      <button class="btn btn-ghost" id="btn-print" type="button" title="Print checklist">Print</button>
-      <button class="btn btn-ghost" id="btn-theme" type="button" title="Switch theme">Dark</button>
-      <button class="btn btn-ghost" id="btn-reset" type="button" title="Clear all progress">Reset</button>
-    </div>
+  <div class="appbar-right">
+    <span class="appbar-meta" id="appbar-meta">0 / 54</span>
+    <button class="icon-btn" id="btn-theme" type="button" aria-label="Switch theme">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/><circle cx="12" cy="12" r="4"/></svg>
+    </button>
   </div>
 </header>
 
-<div class="shell">
-  <aside class="rail">
-    <div class="rail-block">
-      <p class="eyebrow">The channel</p>
-      <p class="rail-fact"><a href="https://www.youtube.com/@koushikkonda1994" target="_blank" rel="noopener">Koushik Konda</a> has 123 videos. <strong>54</strong> are SAP MDG. The playlist runs newest-first, so nothing is in teaching order.</p>
+<main id="screen">
+
+  <!-- ============ START ============ -->
+  <section class="view" id="view-start" data-view="start">
+    <p class="eyebrow">SAP Master Data Governance</p>
+    <h1 class="display">25 hours.<br>54 videos.<br><span class="grad">One correct order.</span></h1>
+    <p class="lede">Every MDG video on Koushik Konda's channel, sequenced by SAP's own dependency chain instead of upload date. Notes come from the transcripts, not the titles.</p>
+
+    <div class="readouts" role="list">
+      <div class="readout" role="listitem"><span class="k">Videos</span><b>54</b></div>
+      <div class="readout" role="listitem"><span class="k">Runtime</span><b>25:14</b></div>
+      <div class="readout" role="listitem"><span class="k">Phases</span><b>6</b></div>
+      <div class="readout" role="listitem"><span class="k">Skipped</span><b>69</b></div>
     </div>
 
-    <nav class="rail-nav" aria-label="Phases">
-      <p class="eyebrow">Phases</p>
-      <ol id="rail-list"></ol>
-    </nav>
+    <button class="cta" id="btn-continue" type="button">
+      <span class="cta-dot" aria-hidden="true"></span>
+      <span class="cta-body">
+        <span class="cta-k">Continue</span>
+        <span class="cta-v" id="cta-next">MDG Overview for beginners</span>
+      </span>
+      <span class="cta-time" id="cta-time">6m</span>
+    </button>
 
-    <div class="rail-block rail-links">
-      <p class="eyebrow">More</p>
-      <a href="#schedule">Study schedules</a>
-      <a href="#gaps">What this channel skips</a>
-      <a href="#caveats">Caveats</a>
-      <a href="#notes">Night notes</a>
+    <div class="progress-strip" id="progress-strip" aria-hidden="true"></div>
+
+    <h2 class="sec-h">Start tonight <span class="sec-note">41 min</span></h2>
+    <div class="list" id="tonight-list"></div>
+
+    <h2 class="sec-h">Why this order <span class="sec-note">3 rules</span></h2>
+    <div class="rules">
+      <div class="rule"><span class="rule-n">01</span><p><b>Data model before screens.</b> There is no field to put on a UI until the entity and attribute exist.</p></div>
+      <div class="rule"><span class="rule-n">02</span><p><b>Config before code.</b> BRF+ first, BAdI second, dynamic BAdI last. Otherwise you learn ABAP patterns without the framework contract.</p></div>
+      <div class="rule"><span class="rule-n">03</span><p><b>One checkpoint per phase.</b> If you cannot do it without the video, the phase is not finished.</p></div>
     </div>
-  </aside>
+  </section>
 
-  <main id="content">
-    <section class="hero">
-      <p class="eyebrow">SAP Master Data Governance · ordered curriculum</p>
-      <h1>SAP MDG, in the<br>only order that works.</h1>
-      <p class="lede">Every MDG video on this channel, sorted by SAP's own dependency chain — data model first, then UI, then process, then rules. Each one carries the key points pulled from its actual transcript, and a checkpoint you must pass before moving on.</p>
-      <dl class="stats">
-        <div><dt>Videos</dt><dd>54</dd></div>
-        <div><dt>Watch time</dt><dd>25h 14m</dd></div>
-        <div><dt>Phases</dt><dd>6</dd></div>
-        <div><dt>Wrong order</dt><dd>0</dd></div>
-      </dl>
-    </section>
-
-    <section class="tonight" id="tonight">
-      <div class="tonight-head">
-        <h2>Start tonight</h2>
-        <p>41 minutes. Four short videos that make everything else readable.</p>
+  <!-- ============ LEARN ============ -->
+  <section class="view" id="view-learn" data-view="learn">
+    <div class="view-head">
+      <div>
+        <p class="eyebrow" id="learn-eyebrow">Phase 0 · 4 videos</p>
+        <h1 class="screen-title" id="learn-title">Orientation</h1>
       </div>
-      <div id="tonight-list" class="tonight-list"></div>
-    </section>
-
-    <div class="toolbar" id="toolbar">
-      <div class="search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="q" type="search" placeholder="Search a video, an object, a table…  (press /)" autocomplete="off" aria-label="Search videos">
+      <div class="view-stat">
+        <b id="phase-pct">0%</b>
+        <span id="phase-count">0 / 4</span>
       </div>
-      <div class="chips" id="chips" role="group" aria-label="Filter by level">
-        <button class="chip is-on" data-level="all" type="button">All</button>
-        <button class="chip" data-level="beginner" type="button">Beginner</button>
-        <button class="chip" data-level="intermediate" type="button">Intermediate</button>
-        <button class="chip" data-level="advanced" type="button">Advanced</button>
-      </div>
-      <label class="switch">
-        <input type="checkbox" id="unwatched">
-        <span>Unwatched only</span>
-      </label>
-      <p class="toolbar-count" id="result-count"></p>
     </div>
 
-    <div id="phases"></div>
+    <div class="searchbox">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input id="q" type="search" inputmode="search" placeholder="Search notes, tables, BAdIs…" autocomplete="off" aria-label="Search videos">
+      <button class="search-clear" id="q-clear" type="button" aria-label="Clear search" hidden>×</button>
+    </div>
 
-    <section class="pane" id="schedule">
-      <p class="eyebrow">Plan</p>
-      <h2>Three schedules, one order</h2>
-      <p class="pane-lede">The sequence never changes — only the pace. Pick the pace you will actually keep, not the one that sounds impressive.</p>
-      <div class="tabs" id="schedule-tabs" role="tablist"></div>
-      <div id="schedule-body" class="schedule-body"></div>
-    </section>
+    <div class="chiprow" id="phase-chips" role="tablist" aria-label="Phases"></div>
+    <div class="chiprow chiprow-sub" id="level-chips" role="group" aria-label="Filters">
+      <button class="chip is-on" data-level="all" type="button">All</button>
+      <button class="chip" data-level="beginner" type="button">Beginner</button>
+      <button class="chip" data-level="intermediate" type="button">Intermediate</button>
+      <button class="chip" data-level="advanced" type="button">Advanced</button>
+      <button class="chip chip-toggle" data-toggle="unwatched" type="button" aria-pressed="false">Unwatched</button>
+    </div>
 
-    <section class="pane" id="gaps">
-      <p class="eyebrow">Blind spots</p>
-      <h2>What this channel does not teach</h2>
-      <p class="pane-lede">Strong on extension, UI, workflow, BRF+/BAdI. Silent on the things that decide whether a project actually ships. Cover these elsewhere.</p>
-      <div class="gap-list" id="gap-list"></div>
-    </section>
+    <p class="result-line" id="result-line"></p>
+    <div id="learn-body" class="list"></div>
 
-    <section class="pane" id="caveats">
-      <p class="eyebrow">Read before quoting</p>
-      <h2>Caveats in these notes</h2>
-      <ul class="caveats" id="caveat-list"></ul>
-      <div class="toplist">
-        <p class="eyebrow">Most watched on the channel</p>
-        <ol id="top-list"></ol>
+    <div class="phase-foot" id="phase-foot"></div>
+  </section>
+
+  <!-- ============ PLAN ============ -->
+  <section class="view" id="view-plan" data-view="plan">
+    <p class="eyebrow">Schedule</p>
+    <h1 class="screen-title">Pick a pace you'll keep</h1>
+    <p class="lede">The sequence never changes. Only the speed does.</p>
+
+    <div class="segmented" id="plan-tabs" role="tablist"></div>
+    <div id="plan-body" class="plan-body"></div>
+
+    <h2 class="sec-h">Phase load</h2>
+    <div class="load-list" id="load-list"></div>
+
+    <h2 class="sec-h">Blind spots <span class="sec-note">not on this channel</span></h2>
+    <div class="gap-list" id="gap-list"></div>
+  </section>
+
+  <!-- ============ NOTES ============ -->
+  <section class="view" id="view-notes" data-view="notes">
+    <p class="eyebrow">Your log</p>
+    <h1 class="screen-title">Night notes</h1>
+    <p class="lede">Three lines after each sitting: what you configured, what broke, how you'd explain it in an interview. Stored in this browser only.</p>
+
+    <div class="journal-wrap">
+      <textarea id="journal" rows="7" placeholder="Phase 1 · video 3 —&#10;· configured&#10;· broke on&#10;· interview line"></textarea>
+      <div class="journal-meta">
+        <span id="journal-status">saved locally</span>
+        <span id="journal-count">0 words</span>
       </div>
-    </section>
+    </div>
 
-    <section class="pane" id="notes">
-      <p class="eyebrow">Your log</p>
-      <h2>Night notes</h2>
-      <p class="pane-lede">After each sitting, write three lines in your own words. Saved in this browser only.</p>
-      <textarea id="journal" rows="6" placeholder="Phase 1, video 3 — what I configured, what broke, what I would say in an interview…"></textarea>
-      <div class="notes-foot">
-        <span id="journal-status">Saved locally</span>
-        <button class="btn btn-ghost" id="btn-export" type="button">Export progress (.json)</button>
-      </div>
-    </section>
+    <div class="btnrow">
+      <button class="btn" id="btn-export" type="button">Export progress</button>
+      <button class="btn btn-danger" id="btn-reset" type="button">Reset ticks</button>
+    </div>
 
-    <footer class="foot">
-      <p>Built from the transcripts of all 54 videos, not from their titles. Object names come from auto-captions — verify the flagged ones in SE37 / SE24 before you quote them.</p>
-      <p class="foot-meta">Static site · no tracking · progress stays in your browser</p>
-    </footer>
-  </main>
-</div>
+    <h2 class="sec-h">Caveats</h2>
+    <ul class="caveats" id="caveat-list"></ul>
+
+    <h2 class="sec-h">Most watched on the channel</h2>
+    <div class="top-list" id="top-list"></div>
+
+    <p class="foot-note">Built from the transcripts of all 54 videos. Object names come from auto-captions — verify the flagged ones in SE37 / SE24 before quoting them.</p>
+  </section>
+
+</main>
+
+<nav class="tabbar" aria-label="Sections">
+  <button class="tab is-on" data-go="start" type="button" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
+    <span>Start</span>
+  </button>
+  <button class="tab" data-go="learn" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="m3 12.5 9 4.5 9-4.5"/><path d="m3 17 9 4.5 9-4.5"/></svg>
+    <span>Learn</span>
+  </button>
+  <button class="tab" data-go="plan" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4m8-4v4M3 10h18"/></svg>
+    <span>Plan</span>
+  </button>
+  <button class="tab" data-go="notes" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L20 8a2.8 2.8 0 0 0-4-4L4 16v4Z"/><path d="m14 6 4 4"/></svg>
+    <span>Notes</span>
+  </button>
+</nav>
 
 <script src="data.js"></script>
 <script src="app.js"></script>

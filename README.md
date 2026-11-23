@@ -1,92 +1,95 @@
-# SAP MDG · Study Register
+# MDG Register
 
-A single-page study tracker for the 54 SAP MDG videos on
+A mobile-first study app for the 54 SAP MDG videos on
 [Koushik Konda's channel](https://www.youtube.com/@koushikkonda1994), ordered by SAP's own
 configuration dependency chain instead of by upload date.
+
+**Live:** https://krrivats.github.io/mdg-roadmap/
 
 The channel has 123 videos; only 54 are MDG, and its "SAP MDG Technical" playlist is sorted
 **newest first** — so it opens with a workflow edge case and ends with "MDG Overview for beginners".
 This project fixes the order and attaches real notes to every video.
 
-- 6 phases · 54 videos · 25h 14m
-- Per video: one-line summary, 3–5 key points with real object names, the gotcha, prerequisites
-- Per phase: a checkpoint you must be able to do without the video
-- Progress is stored in the browser (localStorage), no accounts, no tracking
+## What it is
 
-## Where things are
+| | |
+|---|---|
+| **Scope** | 6 phases · 54 videos · 25h 14m · 7 deliberately excluded topics listed |
+| **Per video** | one-line summary, 3–5 key points with real object names, the gotcha, prerequisites |
+| **Per phase** | a checkpoint you must be able to do without the video |
+| **App shell** | tabs (Start / Learn / Plan / Notes), works like a native app, installable, offline-capable |
+| **Tracking** | progress ring, per-phase bars, "Continue" jumps to your next unwatched video |
+| **Search** | across titles *and* note text — try `CVI`, `BRF+`, `workflow` |
+| **Privacy** | everything stays in `localStorage`. No accounts, no analytics, no network calls |
+
+## Views
+
+- **Start** — the pitch, four readouts, tonight's 41 minutes, the three ordering rules.
+- **Learn** — one phase at a time, phase chips, level filters, search, expandable note cards, checkpoint, prev/next.
+- **Plan** — three schedules (Sprint 13 days / Standard 5 weeks / Weekend 2), phase load bars, blind spots.
+- **Notes** — a journal for your own notes, export, reset, caveats, most-watched videos.
+
+On a phone the navigation is a bottom tab bar; from 900px up it becomes a floating left dock.
+
+## Structure
 
 ```
-ROADMAP.md            the readable roadmap (source of truth for the site)
-docs/                 the website (this is what gets deployed)
-  index.html          markup + copy
-  styles.css          ledger design, light + dark, print stylesheet
-  app.js              rendering, filtering, progress, notes
-  data.js             generated from ROADMAP.md — do not edit by hand
-notes/                raw per-video notes (batchA–F) + curriculum reasoning
-data/                 channel metadata + video transcripts (vtt/txt)
-scripts/              build_roadmap.py, build_site.py, test_*.py
+docs/                    the app (this is what GitHub Pages serves)
+  index.html             shell + static copy
+  styles.css             design system, dark/light, print, reduced motion
+  app.js                 router, rendering, progress, search
+  data.js                generated from ROADMAP.md — never edit by hand
+  manifest.webmanifest   installable app metadata
+  sw.js                  offline shell (stale-while-revalidate)
+  icon.svg               app icon
+ROADMAP.md               readable roadmap, source of truth for the site
+notes/                   raw per-video notes (batchA–F) + curriculum reasoning
+data/                    channel metadata (transcripts are gitignored)
+scripts/                 build_roadmap.py, build_site.py, test_site.py, test_app.py, test_final.py
 ```
 
-## Run it locally
-
-Either just open `docs/index.html` in a browser (it works from `file://`), or serve it:
+## Run locally
 
 ```bash
 cd docs
-python -m http.server 8123
-# http://127.0.0.1:8123
+python -m http.server 8124
+# http://127.0.0.1:8124
 ```
+
+Opening `docs/index.html` from disk also works; only the service worker needs `http(s)`.
 
 ## Deploy to GitHub Pages
 
-The site is plain static files with no build step, so deployment is a settings change.
+Plain static files, no build step.
 
-1. Create a repository and push this folder:
+1. Push this folder to a repository.
+2. **Settings → Pages → Build and deployment**: source **Deploy from a branch**, branch **main**, folder **/docs**.
+3. Open `https://<you>.github.io/<repo>/`.
 
-   ```bash
-   git init
-   git add .
-   git commit -m "SAP MDG study register"
-   git branch -M main
-   git remote add origin https://github.com/<you>/<repo>.git
-   git push -u origin main
-   ```
+`docs/.nojekyll` is committed so GitHub serves the files as-is.
 
-2. On GitHub: **Settings → Pages → Build and deployment**
-   - Source: **Deploy from a branch**
-   - Branch: **main**, folder: **/docs**
-   - Save.
+### Updating content
 
-3. Wait for the green check, then open `https://<you>.github.io/<repo>/`.
-
-`docs/.nojekyll` is already there, so GitHub serves the files as-is instead of running Jekyll.
-
-> If you would rather deploy from the repository root, move the contents of `docs/` to the root and
-> pick **/ (root)** in step 2. Nothing in the site depends on the folder name.
-
-### Updating the content later
-
-`docs/data.js` is generated, never hand-edited:
+`docs/data.js` is generated:
 
 ```bash
-python scripts/build_roadmap.py   # ROADMAP.md  <- notes/batch*.md
+python scripts/build_roadmap.py   # ROADMAP.md   <- notes/batch*.md
 python scripts/build_site.py      # docs/data.js <- ROADMAP.md
 ```
 
-Then commit and push; Pages redeploys automatically.
+Commit and push; Pages redeploys. Bump `CACHE` in `docs/sw.js` when you change the shell so
+returning visitors get the new version immediately.
 
 ## Tested
 
-`python scripts/test_site.py` and `scripts/test_final.py` drive the page in Chromium and check:
-54 rows render, ticks survive reload, search and level filters work, "Continue" jumps to the next
-unwatched video, the theme toggle persists, print hides the chrome, mobile has no horizontal
-overflow, `file://` works, and there are no console errors.
+`scripts/test_app.py` and `test_final.py` drive the page in Chromium and assert: all 54 videos
+render, ticks survive reload, the ring/phase bars update, search and level filters return the right
+counts, phase chips switch content, "Continue" opens the next unwatched video, the back button
+moves between tabs, print hides the chrome, mobile has zero horizontal overflow, and there are no
+console errors. Layout is verified at 390×844 and 1440×950 in both themes.
 
-## Notes on accuracy
+## Accuracy
 
 Object names come from YouTube auto-captions, so some are phonetically reconstructed — the flagged
-ones are listed in `ROADMAP.md` (Appendix D). Verify those in SE37 / SE24 before quoting them in an
-interview. Two videos have no captions at all and are marked title-based only.
-
-Progress and night notes live only in your browser. Export them with the **Export progress (.json)**
-button before clearing site data.
+ones are listed in Appendix D of `ROADMAP.md`. Verify those in SE37 / SE24 before quoting them.
+Two videos have no captions and are marked title-based only.
